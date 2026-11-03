@@ -1,78 +1,74 @@
 # Public Release Audit
 
 Audit date: **2026-11-03**
-Scope: local public-release preparation for Gridbricks Wind Intelligence. No repository
-publication, push, deployment, video upload, or challenge submission was performed.
+Scope: post-publication review of the Gridbricks Wind Intelligence repository. No code,
+deployment, account, commit, or submission changes were made by this review.
 
-## Executive result
+## Publication state
 
-The source and documentation are suitable for a local release-preparation pass, but the
-workspace is **not release-ready for GitHub publication** until it is placed in a Git
-repository and the final tracked-file and history checks are completed.
+| Item | Verified state |
+|---|---|
+| Repository URL | <https://github.com/Saahirrrr/northwind-eval> (provided project context; independent GitHub verification remains pending) |
+| Visibility | Public (provided project context; not proven by local Git metadata) |
+| Local branch | `main` |
+| Local HEAD | `8d34eb1` |
+| Local commit count | 1 |
+| Commit author privacy | Local commit uses a GitHub noreply address; address not reproduced here |
+| Frontend deployment | <https://gridbricks-wind-frontend.vercel.app> |
+| Backend deployment | <https://gridbricks-wind-backend.vercel.app> |
+
+Local Git metadata confirms the branch, HEAD commit, and one-commit history. It does not
+prove GitHub repository visibility. The repository URL and public status above are recorded
+from the supplied project context and still require independent GitHub verification.
 
 ## Findings
 
-| Severity | Finding | Affected files | Required action |
+| Severity | Finding | Affected files | Status/action |
 |---|---|---|---|
-| High | The workspace has no `.git` metadata. Git status, branches, history, tracked files, and historical secret scanning could not be verified. | Repository root | Initialize/use the intended repository, inspect tracked files and history, then scan before publishing. |
-| High | The requested anonymous/random repository-name requirement is not verifiable from this workspace. The current product name is descriptive. | Repository identity | Use a neutral name such as `northwind-eval-7f3c` if the challenge requires anonymity. |
-| Medium | Local Vercel metadata exists under `backend/.vercel/`; it is ignored but must not be added to a public repository. | `backend/.vercel/`, `.gitignore`, `backend/.gitignore` | Confirm it is untracked/excluded after Git is available. |
-| Medium | The project has production URLs but no independent public-release evidence in this workspace for every route, browser flow, and current live metric. | Production URLs and docs | Re-run the final smoke and browser checks immediately before submission. |
-| Low | Docker CLI is unavailable in this environment, so current Compose build/runtime checks cannot be independently rerun here. | `Dockerfile.backend`, `frontend/Dockerfile`, `docker-compose.yml` | Run Docker validation on a machine with Docker Desktop/Engine. |
-| Low | No license file is present. | Repository root | Add a license only if reuse rights are intentionally granted. |
+| Medium | Local Vercel metadata exists under `backend/.vercel/`. | `backend/.vercel/`, `.gitignore`, `backend/.gitignore` | Ignored and excluded from release packaging; confirm tracked-file status remains clean when making future commits. |
+| Low | No license file is present. | Repository root | No license was added. Add one only if reuse rights are intentionally granted. |
+| Low | Docker CLI was unavailable during the local preparation pass. | Docker configuration | Docker validation remains a manual task on a Docker-capable machine. |
+| Low | Public deployment and browser checks should be repeated from a private/incognito context before final submission. | Production URLs | Manual verification remains pending; no claim of incognito verification is made. |
 
-## Secret and privacy scan
+## Security and privacy checks
 
-The following local patterns were inspected without printing values:
+The earlier preparation pass performed a limited pattern-based scan of current
+source/configuration filenames and contents. It was not a comprehensive security audit or
+dedicated secret scan. It inspected environment-file names and credential-like patterns
+without printing secret values and found:
 
-- Environment and credential-like filenames.
-- API keys, passwords, tokens, credentials, Supabase/Gemini references.
-- Local absolute paths and deployment metadata in documentation/configuration.
+- `.env.example` contains example configuration only.
+- Local `.env` files are ignored and excluded from Vercel packaging.
+- `backend/.vercel/.env.production.local` is local Vercel metadata and is ignored; its
+  contents are not reproduced here.
+- No API key, password, Supabase credential, Gemini credential, or secret value was found
+  in the inspected current source/configuration files.
+- The public Elexon endpoints used by the application do not require a credential in the
+  current integration.
 
-Observed:
+A dedicated secret scanner and comprehensive historical secret scan were **not performed**.
+Run both an appropriate scanner and a focused history review before treating this audit as
+complete.
 
-- `.env.example` contains public configuration examples only.
-- `backend/.env.local` was removed during deployment packaging cleanup.
-- `backend/.vercel/.env.production.local` is local Vercel metadata and is ignored; its values
-  were not printed or copied into documentation.
-- No API key, password, Supabase credential, Gemini credential, or committed secret value was
-  found in the inspected source/configuration files.
-- The public Elexon endpoints used by this project require no API credential in the current
-  integration.
+## Verified locally
 
-Historical secret exposure is **not verified** because Git history is unavailable.
+- Local Git metadata confirmed the `main` branch, initial commit, current HEAD, and one-commit
+  history.
+- Repository URL and public visibility were supplied as project context, not independently
+  verified against GitHub.
+- Backend tests and Ruff passed in the preparation pass.
+- Frontend tests, TypeScript checks, and production build passed in the preparation pass.
+- Markdown local-link check passed.
+- The supplied frontend and backend production endpoints returned HTTP 200 in a prior smoke
+  check; private-browser verification was not performed.
 
-## Safe local configuration changes made
+## Remaining manual verification
 
-- Added root and backend `.vercelignore` rules for local environment files.
-- Added `**/.vercel/` to the root `.gitignore`.
-- Removed the local backend `.env.local` file that was being packaged by the Vercel build.
-
-No production Vercel variables or application behavior were changed.
-
-## Release blockers
-
-Before public release:
-
-1. Use the intended Git repository and verify status, branches, tracked files, and history.
-2. Scan all committed history for secrets; rotate any exposed credential before publication.
-3. Confirm the repository name satisfies the challenge anonymity requirement.
-4. Re-run public frontend/backend/API smoke checks.
-5. Run Docker Compose validation on a Docker-capable machine.
-6. Decide whether to add a license.
-
-## Verification status
-
-Verified locally in this preparation:
-
-- Backend Python 3.12 imports, tests, and Ruff.
-- Frontend tests, TypeScript, and production build.
-- Vercel backend packaging with Python 3.12 and runtime dependencies.
-- No local environment files in the generated Vercel function package.
-
-Not verified here:
-
-- Git-tracked-file status and historical secrets.
-- Public deployment behavior after the latest local changes.
-- Docker runtime in this environment.
-- Incognito/browser isolation checks.
+1. Confirm repository visibility and URL directly on GitHub.
+2. Confirm that `northwind-eval` satisfies the anonymous/random naming requirement.
+3. Run a dedicated secret scan over the committed tree/history.
+4. Confirm both deployments in an incognito/private browser.
+5. Check all API endpoints and browser CORS/network behavior from that context.
+6. Run Docker Compose configuration, build, startup, health, proxy, and restart checks.
+7. Decide whether to add a license.
+8. Record and verify the demonstration video, then submit the challenge form.

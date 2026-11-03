@@ -10,8 +10,7 @@ provenance inspectable without replacing missing observations with fabricated va
 - Frontend: <https://gridbricks-wind-frontend.vercel.app>
 - Backend API: <https://gridbricks-wind-backend.vercel.app>
 
-The links above are the configured production endpoints. Public deployment status and
-runtime behavior should be rechecked before a final submission.
+These are the project’s configured deployment endpoints.
 
 ## Problem and capabilities
 
@@ -36,9 +35,6 @@ Repository screenshots are available in [`docs/`](docs/):
 - [Accuracy Dashboard](docs/manual-accuracy.png)
 - [Forecast Vintage Inspector](docs/manual-vintages.png)
 - [Data Provenance](docs/manual-provenance.png)
-
-If these images are unavailable in a public release, replace this section with screenshots
-captured from the public deployment. Do not label placeholders as production evidence.
 
 ## Architecture
 

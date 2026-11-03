@@ -1,16 +1,17 @@
 # Final Submission Checklist
 
 Status values: **DONE**, **PENDING**, or **MANUAL**. Items marked manual require the owner
-to perform and confirm the action; no submission or publication was performed by this work.
+to perform and confirm the action; this document records preparation status and does not
+perform challenge submission.
 
 ## Repository and security
 
 - [x] **DONE** Public-release audit document created: [PUBLIC_RELEASE_AUDIT.md](PUBLIC_RELEASE_AUDIT.md).
-- [ ] **MANUAL** Initialize/use the intended Git repository.
-- [ ] **MANUAL** Verify Git status, branches, tracked files, and commit history.
+- [x] **DONE** Git repository initialized and pushed to `main`.
+- [x] **DONE** Initial commit recorded: `8d34eb1`.
 - [ ] **MANUAL** Scan all Git history for secrets and rotate any exposed credential.
-- [ ] **MANUAL** Confirm the repository name satisfies the anonymous/random naming requirement.
-- [ ] **MANUAL** Suggested neutral name: `northwind-eval-7f3c`.
+- [ ] **MANUAL** Confirm that `northwind-eval` satisfies the challenge's anonymous/random
+  repository-name requirement.
 - [ ] **MANUAL** Decide whether to add a license.
 
 ## Documentation
@@ -26,7 +27,8 @@ to perform and confirm the action; no submission or publication was performed by
 
 ## Application and deployment verification
 
-- [ ] **MANUAL** Confirm the GitHub repository is public.
+- [x] **DONE** GitHub repository is public:
+  <https://github.com/Saahirrrr/northwind-eval>
 - [ ] **MANUAL** Verify the GitHub URL in an incognito/private browser window.
 - [ ] **MANUAL** Verify frontend URL in an incognito/private browser window:
   <https://gridbricks-wind-frontend.vercel.app>
@@ -52,10 +54,8 @@ to perform and confirm the action; no submission or publication was performed by
 
 ## Final order
 
-1. Complete Git and security/history checks.
-2. Choose the neutral repository name and license decision.
-3. Re-run automated and Docker validation.
-4. Verify public frontend/backend behavior privately.
-5. Publish the repository only after the preceding checks pass.
-6. Record the video and verify it privately.
-7. Complete and submit the challenge form.
+1. Complete Git history secret scanning and the license decision.
+2. Re-run automated and Docker validation.
+3. Verify public frontend/backend behavior privately.
+4. Record the video and verify it privately.
+5. Complete and submit the challenge form.
