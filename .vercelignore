@@ -1,0 +1,11 @@
+# Never include local credentials or environment-specific settings.
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+
+# Local Vercel metadata is not deployment source.
+.vercel
+**/.vercel

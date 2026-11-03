@@ -1,0 +1,13 @@
+.git
+.gitignore
+.venv
+backend/.pytest_cache
+backend/.ruff_cache
+frontend/node_modules
+frontend/dist
+frontend/.vite
+*.pyc
+__pycache__
+.env
+.env.*
+!.env.example
